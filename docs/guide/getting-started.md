@@ -23,8 +23,6 @@ cd telemetry-platform
 bun install
 ```
 
----
-
 ## 2. Launch Development Servers
 
 Run the parallel development server script:
@@ -48,8 +46,6 @@ This single command starts both applications concurrently:
  ✓ Ready in 1.5s
 ```
 
----
-
 ## 3. (Optional) Start OpenTelemetry Collector
 
 If you want to collect OTLP gRPC (`4317`) or HTTP (`4318`) signals from external workloads:
@@ -58,8 +54,6 @@ If you want to collect OTLP gRPC (`4317`) or HTTP (`4318`) signals from external
 docker compose up -d
 ```
 
----
-
 ## 4. Accessing the Dashboard
 
 Open your browser and navigate to `http://localhost:3000`. You can explore the following views:
@@ -67,12 +61,8 @@ Open your browser and navigate to `http://localhost:3000`. You can explore the f
 ### Service Catalog (`/services`)
 ![Service Catalog](/images/service_catalog.png)
 
----
-
 ### Cross-Cloud Topology Map (`/topology`)
 ![Topology Map](/images/topology_map.png)
-
----
 
 ### Traces & Waterfall Explorer (`/traces`)
 ![Traces Waterfall](/images/traces_waterfall.png)

@@ -9,8 +9,6 @@ Learn how to connect your microservices to **Observability Pro** with zero appli
 3. Enter your service name (e.g., `checkout-api`), environment, and GitHub repository URL.
 4. Copy the generated **ID Service Key (UUID v4)** (e.g., `srv-c1234567-89ab-4cde-8f01-23456789abcd`).
 
----
-
 ## 2. Zero-Code Integration via Dockerfile
 
 Client microservices do not need to install any OpenTelemetry SDK packages directly in `package.json`. You can inject the pre-compiled APM agent during image build:
@@ -37,8 +35,6 @@ EXPOSE 3000
 CMD ["node", "-r", "/opt/apm/dist/register.js", "dist/main"]
 ```
 
----
-
 ## 3. Environment Variable Configuration
 
 Pass the Service Key and Backend Endpoint to your service via environment variables in `docker-compose.yml`:
@@ -54,11 +50,54 @@ services:
       - "3001:3001"
 ```
 
----
+## 4. Multi-Language Quickstart Cheat Sheet
 
-## 4. Manual Node.js / Bun SDK Setup
+Connect microservices in any programming language by configuring standard OpenTelemetry environment variables:
 
-If you prefer initializing OpenTelemetry programmatically in code:
+### 🐍 Python (Zero-Code)
+```bash
+pip install opentelemetry-distro opentelemetry-exporter-otlp
+opentelemetry-bootstrap -a install
+
+export OTEL_SERVICE_NAME="python-payment-service"
+export OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4000"
+export OTEL_EXPORTER_OTLP_HEADERS="x-service-key=srv-xxxx-xxxx-xxxx"
+
+opentelemetry-instrument python app.py
+```
+
+### ☕ Java (Zero-Code)
+```bash
+export OTEL_SERVICE_NAME="java-billing-service"
+export OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4000"
+export OTEL_EXPORTER_OTLP_HEADERS="x-service-key=srv-xxxx-xxxx-xxxx"
+
+java -javaagent:opentelemetry-javaagent.jar -jar target/app.jar
+```
+
+### 🐹 Go (Compile-Time SDK)
+```go
+import (
+    "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp"
+)
+
+exporter, _ := otlptracehttp.New(ctx,
+    otlptracehttp.WithEndpoint("localhost:4000"),
+    otlptracehttp.WithHeaders(map[string]string{
+        "x-service-key": "srv-xxxx-xxxx-xxxx",
+    }),
+)
+```
+
+### 🐘 PHP (Auto-Prepend)
+In `php.ini`:
+```ini
+auto_prepend_file=/opt/apm/bootstrap.php
+```
+
+## 5. Programmatic Node.js / Bun SDK Setup
+
+If you prefer initializing OpenTelemetry programmatically in TypeScript:
 
 ```typescript
 import { NodeSDK } from '@opentelemetry/sdk-node';

@@ -1,8 +1,9 @@
 <p align="center">
-  <img src="docs/images/logo.svg" alt="Observability Pro - OTel Vantage Platform" width="480">
+  <img src="docs/public/images/logo.svg" alt="Observability Pro - OTel Vantage Platform" width="480">
 </p>
 
 <p align="center">
+  <a href="https://rslucena.github.io/telemetry-platform/"><img src="https://img.shields.io/badge/Docs-VitePress_Site-3eaf7c?style=for-the-badge&logo=vitepress&logoColor=white" alt="Documentation Site"></a>
   <img src="https://img.shields.io/badge/Status-Work_in_Progress-orange?style=for-the-badge" alt="Status">
   <img src="https://img.shields.io/badge/Bun-1.1+-fbf0df?style=for-the-badge&logo=bun&logoColor=black" alt="Bun">
   <img src="https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js">
@@ -44,49 +45,49 @@ The platform resolves the complexity of correlating scattered logs, tracing slow
 ### Service Catalog (`/services`)
 Centralized view of real-time metrics (RPS, P95 latencies, error rates, and microservice health).
 
-![Service Catalog](docs/images/service_catalog.png)
+![Service Catalog](docs/public/images/service_catalog.png)
 
 ---
 
 ### Cross-Cloud Topology (`/topology`)
 Data flow graph and dependency mapping between microservices running on GCP Cloud Run, AWS ECS, EC2, and local environments.
 
-![Topology Map](docs/images/topology_map.png)
+![Topology Map](docs/public/images/topology_map.png)
 
 ---
 
 ### Trace & Span Waterfall (`/traces`)
 Detailed analysis of distributed requests with interactive waterfall charts and per-span attribute inspection.
 
-![Traces Waterfall](docs/images/traces_waterfall.png)
+![Traces Waterfall](docs/public/images/traces_waterfall.png)
 
 ---
 
 ### Metrics Explorer (`/metrics`)
 Visual exploration of Key Performance Indicators (KPIs), request rates, and latency distributions (P50, P95, P99).
 
-![Metrics Explorer](docs/images/metrics.png)
+![Metrics Explorer](docs/public/images/metrics.png)
 
 ---
 
 ### SLOs & Error Budgets (`/slos`)
 Dashboard for Service Level Objectives, availability goals, and Error Budget burn rate tracking.
 
-![SLOs and Error Budgets](docs/images/slos.png)
+![SLOs and Error Budgets](docs/public/images/slos.png)
 
 ---
 
 ### Incidents & Root Cause Analysis (`/incidents`)
 Central hub for operational anomaly detection, correlated alert grouping, and automated Root Cause Analysis (RCA).
 
-![Incidents Management](docs/images/incident.png)
+![Incidents Management](docs/public/images/incident.png)
 
 ---
 
 ### Service Keys & Settings (`/settings`)
 Management interface for microservice registration, UUID key rotation, GitHub repository links, and APM agent integration guides.
 
-![System Settings](docs/images/settings.png)
+![System Settings](docs/public/images/settings.png)
 
 ---
 

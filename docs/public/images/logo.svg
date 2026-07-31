@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" width="520" height="120">
+  <rect width="520" height="120" rx="12" fill="#141619"/>
+  <!-- Rounded blue box -->
+  <rect x="24" y="24" width="72" height="72" rx="16" fill="#a5c2ff"/>
+  <!-- CPU Icon -->
+  <g stroke="#0b2865" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <rect x="44" y="44" width="32" height="32" rx="4"/>
+    <rect x="52" y="52" width="16" height="16" rx="2"/>
+    <!-- Pins -->
+    <path d="M52 40v4 M60 40v4 M68 40v4"/>
+    <path d="M52 76v4 M60 76v4 M68 76v4"/>
+    <path d="M40 52h4 M40 60h4 M40 68h4"/>
+    <path d="M76 52h4 M76 60h4 M76 68h4"/>
+  </g>
+  <!-- Text: Observability Pro -->
+  <text x="120" y="60" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="34">
+    <tspan fill="#FFFFFF">Observability </tspan>
+    <tspan fill="#a5c2ff">Pro</tspan>
+  </text>
+  <!-- Text: OTel Vantage Platform -->
+  <text x="120" y="90" font-family="'Courier New', Courier, monospace" font-weight="400" font-size="20" fill="#94a3b8" letter-spacing="1">
+    OTel Vantage Platform
+  </text>
+</svg>

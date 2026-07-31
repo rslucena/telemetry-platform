@@ -1,0 +1,12 @@
+{
+  "name": "@telemetry/backend",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "start": "bun dist/index.js",
+    "build": "bun build src/index.ts --target=bun --outdir dist",
+    "test": "bun test"
+  }
+}

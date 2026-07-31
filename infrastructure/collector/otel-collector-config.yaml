@@ -1,0 +1,111 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+  postgresql:
+    endpoint: ${env:POSTGRES_ENDPOINT}:5432
+    transport: tcp
+    username: ${env:POSTGRES_USER}
+    password: ${env:POSTGRES_PASSWORD}
+    databases:
+      - telemetry
+    collection_interval: 10s
+
+  mysql:
+    endpoint: ${env:MYSQL_ENDPOINT}:3306
+    username: ${env:MYSQL_USER}
+    password: ${env:MYSQL_PASSWORD}
+    collection_interval: 10s
+
+  redis:
+    endpoint: ${env:REDIS_ENDPOINT}:6379
+    collection_interval: 10s
+
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_percentage: 80
+    spike_limit_percentage: 20
+
+  batch:
+    timeout: 1s
+    send_batch_size: 1024
+
+  resourcedetection:
+    detectors: [env, gcp, ec2]
+    timeout: 2s
+    override: false
+
+  transform:
+    error_mode: ignore
+    log_statements:
+      - context: log
+        statements:
+          - replace_all_patterns(attributes, "value", "authorization", "[REDACTED]")
+          - replace_all_patterns(attributes, "value", "bearer .*", "[REDACTED]")
+          - replace_all_patterns(attributes, "value", "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", "[MASKED_EMAIL]")
+    trace_statements:
+      - context: span
+        statements:
+          - replace_all_patterns(attributes, "value", "password", "[REDACTED]")
+          - replace_all_patterns(attributes, "value", "secret", "[REDACTED]")
+
+  tail_sampling:
+    decision_wait: 10s
+    num_traces: 10000
+    expected_new_traces_per_sec: 2000
+    policies:
+      [
+        {
+          name: drop-errors-policy,
+          type: status_code,
+          status_code: { status_codes: [ERROR] }
+        },
+        {
+          name: latency-p99-policy,
+          type: latency,
+          latency: { threshold_ms: 1000 }
+        },
+        {
+          name: probabilistic-sample,
+          type: probabilistic,
+          probabilistic: { sampling_percentage: 1.0 }
+        }
+      ]
+
+exporters:
+  otlp/backend:
+    endpoint: http://localhost:4000
+    tls:
+      insecure: true
+
+  prometheus:
+    endpoint: 0.0.0.0:8889
+    namespace: telemetry
+
+  debug:
+    verbosity: detailed
+
+service:
+  telemetry:
+    logs:
+      level: info
+    metrics:
+      address: 0.0.0.0:8888
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [memory_limiter, resourcedetection, transform, tail_sampling, batch]
+      exporters: [otlp/backend, debug]
+    metrics:
+      receivers: [otlp, postgresql, mysql, redis]
+      processors: [memory_limiter, resourcedetection, batch]
+      exporters: [prometheus, otlp/backend, debug]
+    logs:
+      receivers: [otlp]
+      processors: [memory_limiter, transform, batch]
+      exporters: [otlp/backend, debug]

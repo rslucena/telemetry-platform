@@ -1,0 +1,21 @@
+{
+  "name": "@telemetry/monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": ["opentelemetry/backend", "opentelemetry/frontend", "skeletons/*", "packages/*"],
+  "scripts": {
+    "check": "biome check .",
+    "format": "biome format --write .",
+    "lint": "biome lint .",
+    "test": "bun test",
+    "dev": "bun --cwd opentelemetry/backend dev & bun --cwd opentelemetry/frontend dev",
+    "build": "bun --cwd opentelemetry/backend build && bun --cwd opentelemetry/frontend build",
+    "start": "bun --cwd opentelemetry/backend start & bun --cwd opentelemetry/frontend start",
+    "traffic": "bun skeletons/traffic-runner.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "typescript": "^5.7.3"
+  }
+}

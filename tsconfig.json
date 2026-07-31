@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@telemetry/types": ["./packages/types/src/index.ts"],
+      "@telemetry/config": ["./packages/config/src/index.ts"],
+      "@telemetry/telemetry": ["./packages/telemetry/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}

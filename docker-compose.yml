@@ -1,0 +1,21 @@
+services:
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.118.0
+    container_name: telemetry-otel-collector
+    command: ["--config=/etc/otelcol-contrib/config.yaml"]
+    volumes:
+      - ./infrastructure/collector/otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
+    ports:
+      - "4317:4317" # OTLP gRPC receiver
+      - "4318:4318" # OTLP HTTP receiver
+      - "8888:8888" # Collector internal metrics
+      - "8889:8889" # Prometheus metrics exporter
+    environment:
+      - POSTGRES_ENDPOINT=host.docker.internal
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - MYSQL_ENDPOINT=host.docker.internal
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - REDIS_ENDPOINT=host.docker.internal
+    restart: unless-stopped

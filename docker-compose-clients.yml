@@ -1,0 +1,40 @@
+services:
+
+  api-unidades-nodejs:
+    build:
+      context: ./skeletons/api-unidades-nodejs
+      dockerfile: Dockerfile
+    container_name: api-unidades-nodejs
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_PORT=3000
+      - NODE_ENV=local
+      - OTEL_SERVICE_KEY=srv-078fdec4-196a-4255-8b86-6f23ca46e9f0
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://host.docker.internal:4000
+      - GCP_PROJECT_ID=drc-it-ofertas-dev
+      - GCP_CLOUDRUN_SERVICE_NAME=api-unidades-dev
+      - DESABILITAR_LOGGING_GCP_SN=S
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+  api-motor-parametros-nodejs:
+    build:
+      context: ./skeletons/api-motor-parametros-nodejs
+      dockerfile: Dockerfile
+    container_name: api-motor-parametros-nodejs
+    ports:
+      - "3002:3000"
+    environment:
+      - NODE_PORT=3000
+      - NODE_ENV=local
+      - OTEL_SERVICE_KEY=srv-95105a4f-49cb-435b-9d02-6d96d356d6d9
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://host.docker.internal:4000
+      - GCP_PROJECT_ID=drc-it-ofertas-dev
+      - GCP_CLOUDRUN_SERVICE_NAME=api-motor-parametros-dev
+      - DESABILITAR_LOGGING_GCP_SN=S
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+

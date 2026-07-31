@@ -1,0 +1,187 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Geist:wght@500;600;700;800&display=swap");
+
+:root {
+  /* Color Palette Tokens (From HTML Design System) */
+  --bg-dark: #121414;
+  --bg-darker: #0d0e0f;
+  --surface: #121414;
+  --surface-low: #1a1c1c;
+  --surface-container: #1e2020;
+  --surface-high: #292a2a;
+  --surface-highest: #343535;
+  --surface-hover: #1e2020;
+  --surface-card: #161818;
+  --surface-border: #424754;
+  --surface-border-light: #8c909f;
+
+  /* Typography Colors */
+  --text-primary: #e3e2e2;
+  --text-secondary: #c2c6d6;
+  --text-muted: #8c909f;
+
+  /* Accent Tokens */
+  --accent: #adc6ff;
+  --accent-container: #4d8eff;
+  --accent-hover: #d8e2ff;
+  --accent-glow: rgba(173, 198, 255, 0.15);
+
+  /* Semantic Status Tokens */
+  --status-healthy: #4edea3;
+  --status-healthy-bg: #003824;
+  --status-degraded: #ffb95f;
+  --status-degraded-bg: #3e2400;
+  --status-critical: #ffb4ab;
+  --status-critical-bg: #690005;
+  --status-unknown: #8c909f;
+  --status-unknown-bg: #1e2020;
+
+  /* Fonts */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: "Geist", var(--font-sans);
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Sidebar width */
+  --sidebar-width: 250px;
+  --sidebar-width-collapsed: 70px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family: var(--font-display);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+code,
+kbd,
+pre,
+samp,
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Minimalist Card */
+.glass-panel {
+  background: var(--surface-low);
+  border: 1px solid var(--surface-border);
+  border-radius: 4px;
+  transition: border-color 0.15s ease;
+}
+
+.glass-panel:hover {
+  border-color: var(--surface-border-light);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #343535;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #424754;
+}
+
+/* Minimalist Status Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+.badge-healthy {
+  background: var(--status-healthy-bg);
+  color: var(--status-healthy);
+  border: 1px solid rgba(78, 222, 163, 0.3);
+}
+
+.badge-degraded {
+  background: var(--status-degraded-bg);
+  color: var(--status-degraded);
+  border: 1px solid rgba(255, 185, 95, 0.3);
+}
+
+.badge-critical {
+  background: var(--status-critical-bg);
+  color: var(--status-critical);
+  border: 1px solid rgba(255, 180, 171, 0.3);
+}
+
+.badge-unknown {
+  background: var(--status-unknown-bg);
+  color: var(--status-unknown);
+  border: 1px solid rgba(140, 144, 159, 0.3);
+}
+
+/* Layout App Shell */
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-dark);
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  transition: margin-left 0.2s ease;
+}
+
+.page-container {
+  padding: 24px;
+  flex: 1;
+}
+
+/* Micro-animations */
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.pulse-status {
+  animation: pulseGlow 2s infinite ease-in-out;
+}

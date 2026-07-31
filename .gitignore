@@ -1,0 +1,22 @@
+# Dependências
+node_modules/
+.next/
+dist/
+build/
+
+# Banco de dados embarcado SQLite
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.db
+telemetry.sqlite*
+
+# Agentes e configurações locais
+.agents/
+
+# Logs e arquivos temporários
+*.log
+.DS_Store
+.env.local
+.env.development.local
+.env.production.local

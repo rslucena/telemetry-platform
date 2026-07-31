@@ -1,8 +1,19 @@
-# Telemetry Platform
-### OpenTelemetry Observability Suite
+<p align="center">
+  <img src="docs/images/logo.svg" alt="Observability Pro - OTel Vantage Platform" width="480">
+</p>
 
-> **Project Status:** **Work in Progress**  
-> A modern, lightweight, and integrated platform for microservice monitoring, trace/log/metric visualization, SLO management, and automated Root Cause Analysis (RCA).
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Work_in_Progress-orange?style=for-the-badge" alt="Status">
+  <img src="https://img.shields.io/badge/Bun-1.1+-fbf0df?style=for-the-badge&logo=bun&logoColor=black" alt="Bun">
+  <img src="https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js">
+  <img src="https://img.shields.io/badge/React-19-61dafb?style=for-the-badge&logo=react&logoColor=black" alt="React 19">
+  <img src="https://img.shields.io/badge/OpenTelemetry-OTLP-425cc7?style=for-the-badge&logo=opentelemetry&logoColor=white" alt="OpenTelemetry">
+  <img src="https://img.shields.io/badge/SQLite-bun:sqlite-003b57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite">
+</p>
+
+<p align="center">
+  <b>A modern, lightweight, and integrated observability platform for microservices, OTLP tracing, metrics, logs, SLOs, and automated Root Cause Analysis (RCA).</b>
+</p>
 
 ---
 
